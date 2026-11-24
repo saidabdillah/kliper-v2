@@ -14,7 +14,7 @@ with tempfile.TemporaryDirectory() as td:
    try:urllib.request.urlopen(url,timeout=1).close();break
    except OSError:time.sleep(.15)
   with sync_playwright() as pw:
-   b=pw.chromium.launch(executable_path=os.getenv('CHROME') or None,args=['--disable-dev-shm-usage']);q=b.new_page(viewport={'width':1280,'height':840});errors=[];q.on('pageerror',lambda x:errors.append(str(x)));q.goto(url);q.locator('#sourceFile').set_input_files(src);q.locator('#uploadSource').click();q.get_by_role('button',name='Edit manual').click();expect(q.locator('#editor')).to_be_visible();
+   b=pw.chromium.launch(executable_path=os.getenv('CHROME') or None,args=['--disable-dev-shm-usage']);q=b.new_page(viewport={'width':1280,'height':840});errors=[];q.on('pageerror',lambda x:errors.append(str(x)));q.goto(url);q.locator('#sourceFile').set_input_files(src);q.locator('#uploadSource').click();q.get_by_text('Alternatif untuk video tanpa ucapan').click();q.get_by_role('button',name='Edit manual').click();expect(q.locator('#editor')).to_be_visible();
    for i,(kind,f) in enumerate([('video',roll),('audio',song)]):
     q.locator('#assetKind').select_option(kind);q.locator('#assetFile').set_input_files(f);q.locator('#addAsset').click();expect(q.locator('.track-row')).to_have_count(i+1);q.get_by_label('Mulai trek').nth(i).fill('0.5');q.get_by_label('Akhir trek').nth(i).fill('1.5')
    q.locator('#save').click();expect(q.locator('#notice')).to_contain_text('tersimpan');q.locator('#closeEdit').click();q.get_by_role('button',name='Edit klip').click();expect(q.locator('.track-row')).to_have_count(2);expect(q.get_by_label('Mulai trek').first).to_have_value('0.5');q.set_viewport_size({'width':375,'height':780});assert q.evaluate('document.documentElement.scrollWidth<=innerWidth');

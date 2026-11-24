@@ -61,7 +61,7 @@ def recommend(words,duration,target):
         while j<len(words) and words[j][1]-a<=target and not (words[j-1][1]-a>=goal and words[j-1][2].endswith(('.','!','?'))):j+=1
         chunk=words[i:j]; b=min(duration,chunk[-1][1]+.15); text=' '.join(x[2] for x in chunk); tokens=re.findall(r'\w+',text.lower()); score=min(99,45+min(15,len(set(tokens)))+min(20,sum(t in HOOK for t in tokens)*5)+8*('?' in text)+6*('!' in text))
         candidates.append(dict(title=' '.join(text.split()[:9]),summary=' '.join(text.split()[:32]),score=score,start=a,end=b));i=j
-    return sorted(candidates,key=lambda c:-c['score'])[:15]
+    return candidates
 
 def color(s): return '&H'+s[5:7]+s[3:5]+s[1:3]+'&'
 def ass(words,keep,e,W,H):

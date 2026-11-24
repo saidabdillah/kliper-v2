@@ -18,7 +18,7 @@ Buka `http://localhost:8765`. Jika aplikasi berjalan di VPS, dari **laptop** jal
 
 ### Coba alurnya
 1. Pilih MP4, MOV, MKV atau WebM (batas 2 GB), lalu **Unggah video**. Impor URL publik juga tersedia.
-2. Pilih **Edit manual** untuk langsung mengedit tanpa AI, termasuk video tanpa suara. Klip awal memakai maksimal 60 detik pertama; titik masuk/keluar dapat diubah. Pilih **Buat klip** untuk memakai Faster-Whisper lokal (perlu internet untuk mengunduh model pertama kali).
+2. Klik **Buat klip dengan AI**. Whisper membuat transkrip per kata, lalu model semantik multilingual E5 menilai kandidat dan memilih hingga 10 momen. Saat pertama dipakai server mengunduh kedua model; tidak perlu API key. Skor menunjukkan kecocokan isi, bukan peluang viral. Pilih **Edit klip** pada hasil AI sebelum ekspor. Untuk video tanpa ucapan saja, tersedia alternatif **Edit manual**.
 3. Pada **Timeline klip**, pilih jenis aset, unggah B-roll/gambar atau audio. Atur waktu mulai/akhir dan volume musik. Waktu trek relatif terhadap hasil trim, bukan terhadap sumber asli. B-roll menutup kanvas; audio sumber tetap terdengar. Item visual terakhir tampil di atas.
 4. **Simpan** lalu **Ekspor MP4**. Render 1080p H.264 menyatukan gambar, subtitle dan musik. Unduh hasil atau simpan SRT/VTT jika ada transkrip.
 

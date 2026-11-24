@@ -74,6 +74,7 @@ def analyze(p,meta,lang,target,ratio,progress):
         done=int(seg.end*100/meta['duration'])//5*5
         if done!=percent:progress('Mentranskripsi · %s%%'%min(100,done)); percent=done
     if not words:raise ValueError('Tidak ada ucapan yang terdeteksi.')
+    del model,segments
     progress('Mencari momen dan posisi wajah'); clips=recommend(words,meta['duration'],target);pts=faces(p,meta['duration']);
     from ranking import semantic
     progress('Menilai kandidat klip');clips,method=semantic(clips,words)
